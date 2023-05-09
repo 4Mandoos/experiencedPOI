@@ -16,7 +16,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class CustomerExcelWriter {
 	// .xls는 Excel2003 이전 형식으로 문서를 만든 경우 생성되는 확장자
-	public void xlsWriter(List<CustomerVo> list) {
+	public void createExcelFileBefore2003(List<CustomerVo> list) {
 
 		// 워크북 생성
 		HSSFWorkbook workbook = new HSSFWorkbook();
@@ -69,7 +69,7 @@ public class CustomerExcelWriter {
 		}
 
 		// 입력된 내용 파일로 쓰기
-		File file = new File("C:\\poi_temp\\testWrite.xls");
+		File file = new File(MainApplication.FILE_BEFORE_2003);
 		FileOutputStream fos = null;
 
 		try {
@@ -92,8 +92,8 @@ public class CustomerExcelWriter {
 		}
 	}
 
-	// .xlsx는 Excel2003 이전 형식으로 문서를 만든 경우 생성되는 확장자
-	public void xlsxWriter(List<CustomerVo> list) {
+	// .xlsx는 Excel2007 이후 형식으로 문서를 만든 경우 생성되는 확장자
+	public void createExcelFileAfter2007(List<CustomerVo> list) {
 		// 워크북 생성
 		XSSFWorkbook workbook = new XSSFWorkbook();
 		// 워크시트 생성
@@ -145,7 +145,7 @@ public class CustomerExcelWriter {
 		}
 
 		// 입력된 내용 파일로 쓰기
-		File file = new File("C:\\poi_temp\\testWrite.xlsx");
+		File file = new File(MainApplication.FILE_AFTER_2007);
 		FileOutputStream fos = null;
 
 		try {
