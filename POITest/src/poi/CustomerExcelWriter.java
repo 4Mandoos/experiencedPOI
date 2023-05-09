@@ -46,16 +46,16 @@ public class CustomerExcelWriter {
 
 		// 리스트의 size 만큼 row를 생성
 		CustomerVo vo;
-		for (int rowIdx = 0; rowIdx < list.size(); rowIdx++) {
-			vo = list.get(rowIdx);
+		for (int rowIdx = 0; rowIdx < list.size(); rowIdx++) { // 리스트의 size만큼 반복문 실행
+			vo = list.get(rowIdx); // list.get(rowIdx) => 인덱스에 해당하는 고객 정보(CustomerVo)를 가져온다.
 
 			// 행 생성
-			row = sheet.createRow(rowIdx + 1);
+			row = sheet.createRow(rowIdx + 1); // 현재 작업중인 sheet에 행 생성, 0번째 행은 헤더이므로 +1
 
-			cell = row.createCell(0);
+			cell = row.createCell(0); // 1번째 열 (index = 0)에 vo.getCustId()로부터 얻은 고객 아이디 값을 작성한다.
 			cell.setCellValue(vo.getCustId());
 
-			cell = row.createCell(1);
+			cell = row.createCell(1); // 2번째 열 (index = 1)에 vo.getCustId()로부터 얻은 고객 아이디 값을 작성한다.
 			cell.setCellValue(vo.getCustName());
 
 			cell = row.createCell(2);
@@ -70,15 +70,15 @@ public class CustomerExcelWriter {
 		}
 
 		// 입력된 내용 파일로 쓰기
-		File file = new File(MainApplication.FILE_BEFORE_2003);
-		FileOutputStream fos = null;
+		File file = new File(MainApplication.FILE_BEFORE_2003); // 해당 경로에 파일 생성
+		FileOutputStream fos = null; // 객체 선언 및 초기화
 
 		try {
-			fos = new FileOutputStream(file);
-			workbook.write(fos);
-		} catch (FileNotFoundException e) {
+			fos = new FileOutputStream(file); // 객체 생성, 출력 스트림 연결
+			workbook.write(fos); // 워크북의 내용을 파일에 작성한다.
+		} catch (FileNotFoundException e) { // 파일 관련 예외
 			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (IOException e) { // 파일 관련 예외
 			e.printStackTrace();
 		} finally {
 			try {
