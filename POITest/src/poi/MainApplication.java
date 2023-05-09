@@ -1,3 +1,4 @@
+package poi;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -55,11 +56,11 @@ public class MainApplication {
 
 			CustomerExcelWriter excelWriter = new CustomerExcelWriter();
 
-			// xls 파일 쓰기
+			// xls 파일 쓰기(2003)
 			excelWriter.createExcelFileBefore2003(list);
 
-			// xlsx 파일 쓰기
-			excelWriter.createExcelFileBefore2003(list);
+			// xlsx 파일 쓰기(2007)
+			excelWriter.createExcelFileAfter2007(list);
 			break;
 
 		case 2:
