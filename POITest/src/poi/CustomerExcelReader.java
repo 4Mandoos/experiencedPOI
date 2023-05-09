@@ -36,23 +36,20 @@ public class CustomerExcelReader {
 			// 아니면 Iterator<Sheet> s = workbook.iterator() 를 사용해서 조회해도 좋다.
 
 			// 모든 행(row)들을 조회한다.
-			Iterator<Row> rowIterator = sheet.iterator();
+			Iterator<Row> rowIterator = sheet.iterator(); // sheet.iterator() => 시트의 행(row)들을 순회하는 Iterator를 가져온다.
 			while (rowIterator.hasNext()) { // rowIterator.hasNext() => 다음 행이 있는지 확인
 				Row row = rowIterator.next(); // rowIterator.next() => 다음 행을 가져온다.
 
-				// 각각의 행에 존재하는 모든 열(cell)을 순회한다.
+				// 각각의 행에 존재하는 모든 열(cell)을 순회한다. => row와 동일한 방식
 				Iterator<Cell> cellIterator = row.cellIterator();
-
 				while (cellIterator.hasNext()) {
 					Cell cell = cellIterator.next();
 
-					// cell의 타입을 하고, 값을 가져온다.
-					switch (cell.getCellType()) {
-					case NUMERIC:
-						System.out.print((int) cell.getNumericCellValue() + "\t"); // getNumericCellValue 메서드는 기본으로
-																					// double형 반환
+					switch (cell.getCellType()) { // cell.getCellType() => 셀의 타입을 확인
+					case NUMERIC: // 숫자 셀인 경우 cell.getNumericCellValue()를 사용하여 값을 가져온다.
+						System.out.print((int) cell.getNumericCellValue() + "\t"); 												// double형 반환
 						break;
-					case STRING:
+					case STRING: // 문자 셀인 경우 cell.getStringCellValue()를 사용하여 값을 가져온다.
 						System.out.print(cell.getStringCellValue() + "\t");
 						break;
 					}
