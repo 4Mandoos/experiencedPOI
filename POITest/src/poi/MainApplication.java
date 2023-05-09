@@ -53,7 +53,8 @@ public class MainApplication {
 
 				list.add(new CustomerVo(id, name, age, email, telno));
 			}
-
+			
+			// CustomerExcelWriter클래스 인스턴스 생성 => excelWriter에 할당
 			CustomerExcelWriter excelWriter = new CustomerExcelWriter();
 
 			// xls 파일 쓰기(2003)
@@ -64,6 +65,8 @@ public class MainApplication {
 			break;
 
 		case 2:
+			// CustomerExcelReader클래스 인스턴스 생성 => excelReader에 할당
+			// excelReader 인스턴스의 reader() 메서드 호출
 			CustomerExcelReader excelReader = new CustomerExcelReader();
 			excelReader.reader();
 			break;
