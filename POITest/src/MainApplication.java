@@ -1,10 +1,12 @@
 
-import java.lang.invoke.SwitchPoint;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class MainApplication {
+	public static final String FILE_BEFORE_2003 = "./src/CustomerInfo.xls";
+	public static final String FILE_AFTER_2007 = "./src/CustomerInfo.xlsx";
 
 	public static void main(String[] args) {
 		// 엑셀로 쓸 데이터 생성
@@ -54,10 +56,10 @@ public class MainApplication {
 			CustomerExcelWriter excelWriter = new CustomerExcelWriter();
 
 			// xls 파일 쓰기
-			excelWriter.xlsWriter(list);
+			excelWriter.createExcelFileBefore2003(list);
 
 			// xlsx 파일 쓰기
-			excelWriter.xlsxWriter(list);
+			excelWriter.createExcelFileBefore2003(list);
 			break;
 
 		case 2:
