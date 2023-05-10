@@ -77,11 +77,10 @@ public class CustomerExcelWriter {
 		}
 
 		// 입력된 내용 파일로 쓰기
-		File file = new File(MainApplication.FILE_BEFORE_2003); // 해당 경로에 파일 생성
 		FileOutputStream fos = null; // 객체 선언 및 초기화
 
 		try {
-			fos = new FileOutputStream(file); // 객체 생성, 출력 스트림 연결
+			fos = new FileOutputStream(MainApplication.FILE_BEFORE_2003); // 객체 생성, 출력 스트림 연결
 			workbook.write(fos); // 워크북의 내용을 파일에 작성한다.
 		} catch (FileNotFoundException e) { // 파일 관련 예외
 			e.printStackTrace();
@@ -157,7 +156,6 @@ public class CustomerExcelWriter {
 		}
 
 		// 입력된 내용 파일로 쓰기
-		File file = new File(MainApplication.FILE_AFTER_2007);
 		FileOutputStream fos = null;
 
 		try {
