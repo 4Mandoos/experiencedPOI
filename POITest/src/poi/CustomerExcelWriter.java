@@ -5,8 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -19,7 +17,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class CustomerExcelWriter {
 	// .xls는 Excel2003 이전 형식으로 문서를 만든 경우 생성되는 확장자
-	public void createExcelFileBefore2003(Map<String, CustomerVo> customerMap) {
+	public void createExcelFileBefore2003(List<CustomerVo> list) {
 
 		// 워크북 생성
 		HSSFWorkbook workbook = new HSSFWorkbook();
@@ -43,34 +41,32 @@ public class CustomerExcelWriter {
 		cell = row.createCell(3);
 		cell.setCellValue("이메일");
 
-		cell = row.createCell(4);
+		cell = row.createCell(5);
 		cell.setCellValue("전화번호");
 
 		// 리스트의 size 만큼 row를 생성
 		CustomerVo vo;
-		Set<String> keySet = customerMap.keySet();
-		for (int rowIdx = 0; rowIdx < customerMap.size(); rowIdx++) { // 리스트의 size만큼 반복문 실행
-			for (String string : keySet) {
-				vo = customerMap.get(string); // list.get(rowIdx) => 인덱스에 해당하는 고객 정보(CustomerVo)를 가져온다.
+		for (int rowIdx = 0; rowIdx < list.size(); rowIdx++) {
+			vo = list.get(rowIdx);
 
-				// 행 생성
-				row = sheet.createRow(rowIdx + 1); // 현재 작업중인 sheet에 행 생성, 0번째 행은 헤더이므로 +1
+			// 행 생성
+			row = sheet.createRow(rowIdx + 1);
 
-				cell = row.createCell(0); // 1번째 열 (index = 0)에 vo.getCustId()로부터 얻은 고객 아이디 값을 작성한다.
-				cell.setCellValue(vo.getCustId());
+			cell = row.createCell(0);
+			cell.setCellValue(vo.getCustId());
 
-				cell = row.createCell(1); // 2번째 열 (index = 1)에 vo.getCustId()로부터 얻은 고객 아이디 값을 작성한다.
-				cell.setCellValue(vo.getCusPassword());
+			cell = row.createCell(1);
+			cell.setCellValue(vo.getCustPassword());
 
-				cell = row.createCell(2);
-				cell.setCellValue(vo.getCustName());
+			cell = row.createCell(2);
+			cell.setCellValue(vo.getCustName());
 
-				cell = row.createCell(3);
-				cell.setCellValue(vo.getCustEmail());
+			cell = row.createCell(3);
+			cell.setCellValue(vo.getCustEmail());
 
-				cell = row.createCell(4);
-				cell.setCellValue(vo.getCustTelno());
-			}
+			cell = row.createCell(5);
+			cell.setCellValue(vo.getCustTelno());
+
 		}
 
 		// 입력된 내용 파일로 쓰기
@@ -97,7 +93,7 @@ public class CustomerExcelWriter {
 	}
 
 	// .xlsx는 Excel2007 이후 형식으로 문서를 만든 경우 생성되는 확장자
-	public void createExcelFileAfter2007(Map<String, CustomerVo> customerMap) {
+	public void createExcelFileAfter2007(List<CustomerVo> list) {
 		// 워크북 생성
 		XSSFWorkbook workbook = new XSSFWorkbook();
 		// 워크시트 생성
@@ -115,39 +111,37 @@ public class CustomerExcelWriter {
 		cell.setCellValue("이름");
 
 		cell = row.createCell(2);
-		cell.setCellValue("나이");
+		cell.setCellValue("비밀번호");
 
 		cell = row.createCell(3);
 		cell.setCellValue("이메일");
 
-		cell = row.createCell(4);
+		cell = row.createCell(5);
 		cell.setCellValue("전화번호");
 
 		// 리스트의 size 만큼 row를 생성
 		CustomerVo vo;
-		Set<String> keySet = customerMap.keySet();
-		for (int rowIdx = 0; rowIdx < customerMap.size(); rowIdx++) { // 리스트의 size만큼 반복문 실행
-			for (String string : keySet) {
-				vo = customerMap.get(string); // list.get(rowIdx) => 인덱스에 해당하는 고객 정보(CustomerVo)를 가져온다.
+		for (int rowIdx = 0; rowIdx < list.size(); rowIdx++) {
+			vo = list.get(rowIdx);
 
-				// 행 생성
-				row = sheet.createRow(rowIdx + 1); // 현재 작업중인 sheet에 행 생성, 0번째 행은 헤더이므로 +1
+			// 행 생성
+			row = sheet.createRow(rowIdx + 1);
 
-				cell = row.createCell(0); // 1번째 열 (index = 0)에 vo.getCustId()로부터 얻은 고객 아이디 값을 작성한다.
-				cell.setCellValue(vo.getCustId());
+			cell = row.createCell(0);
+			cell.setCellValue(vo.getCustId());
 
-				cell = row.createCell(1); // 2번째 열 (index = 1)에 vo.getCustId()로부터 얻은 고객 아이디 값을 작성한다.
-				cell.setCellValue(vo.getCusPassword());
+			cell = row.createCell(1);
+			cell.setCellValue(vo.getCustPassword());
 
-				cell = row.createCell(2);
-				cell.setCellValue(vo.getCustName());
+			cell = row.createCell(2);
+			cell.setCellValue(vo.getCustName());
 
-				cell = row.createCell(3);
-				cell.setCellValue(vo.getCustEmail());
+			cell = row.createCell(3);
+			cell.setCellValue(vo.getCustEmail());
 
-				cell = row.createCell(4);
-				cell.setCellValue(vo.getCustTelno());
-			}
+			cell = row.createCell(5);
+			cell.setCellValue(vo.getCustTelno());
+
 		}
 
 		// 입력된 내용 파일로 쓰기

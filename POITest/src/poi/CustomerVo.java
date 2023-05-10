@@ -3,15 +3,15 @@ package poi;
 public class CustomerVo {
 
 	private String custId; // 고객ID
-	private String cusPassword; // 고객 비밀번호
+	private String custPassword; // 고객 비밀번호
 	private String custName; // 고객명
 	private String custEmail; // 고객이메일
 	private String custTelno; // 고객전화번호
 
-	public CustomerVo(String custId, String cusPassword, String custName, String custEmail, String custTelno) {
+	public CustomerVo(String custId, String custPassword, String custName, String custEmail, String custTelno) {
 		super();
 		this.custId = custId;
-		this.cusPassword = cusPassword;
+		this.custPassword = custPassword;
 		this.custName = custName;
 		this.custEmail = custEmail;
 		this.custTelno = custTelno;
@@ -25,12 +25,12 @@ public class CustomerVo {
 		this.custId = custId;
 	}
 
-	public String getCusPassword() {
-		return cusPassword;
+	public String getCustPassword() {
+		return custPassword;
 	}
 
-	public void setCusPassword(String cusPassword) {
-		this.cusPassword = cusPassword;
+	public void setCustPassword(String custPassword) {
+		this.custPassword = custPassword;
 	}
 
 	public String getCustName() {
