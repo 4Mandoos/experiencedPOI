@@ -42,8 +42,11 @@ public class CustomerExcelWriter {
 
 		cell = row.createCell(3);
 		cell.setCellValue("이메일");
-
+		
 		cell = row.createCell(4);
+		cell.setCellValue("ㅤ");
+
+		cell = row.createCell(5);
 		cell.setCellValue("전화번호");
 
 		// 리스트의 size 만큼 row를 생성
@@ -68,7 +71,7 @@ public class CustomerExcelWriter {
 				cell = row.createCell(3);
 				cell.setCellValue(vo.getCustEmail());
 
-				cell = row.createCell(4);
+				cell = row.createCell(5);
 				cell.setCellValue(vo.getCustTelno());
 			}
 		}
@@ -112,15 +115,18 @@ public class CustomerExcelWriter {
 		cell.setCellValue("아이디");
 
 		cell = row.createCell(1);
-		cell.setCellValue("이름");
+		cell.setCellValue("비밀번호");
 
 		cell = row.createCell(2);
-		cell.setCellValue("나이");
+		cell.setCellValue("이름");
 
 		cell = row.createCell(3);
 		cell.setCellValue("이메일");
-
+		
 		cell = row.createCell(4);
+		cell.setCellValue("ㅤ");
+
+		cell = row.createCell(5);
 		cell.setCellValue("전화번호");
 
 		// 리스트의 size 만큼 row를 생성
@@ -145,7 +151,7 @@ public class CustomerExcelWriter {
 				cell = row.createCell(3);
 				cell.setCellValue(vo.getCustEmail());
 
-				cell = row.createCell(4);
+				cell = row.createCell(5);
 				cell.setCellValue(vo.getCustTelno());
 			}
 		}

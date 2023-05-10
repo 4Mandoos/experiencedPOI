@@ -30,51 +30,58 @@ public class MainApplication {
 			case 2: // 정보 조회
 				show();
 				break;
-			case 3: // 정보 수정
-				update();
-				break;
-			case 4: // 종료
+			case 3: // 종료
+				System.out.println("프로그램을 종료합니다.");
 				return;
-
 			default:
-				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+				System.out.println("잘못된 입력입니다. 다시 입력해주세요.\n");
 				break;
 			}
 		}
 	}
 
 	private int selectMenu() {
-		System.out.println("——————————————");
-		System.out.println("1. 회원가입");
-		System.out.println("2. 회원정보 조회");
-		System.out.println("3. 회원정보 수정");
-		System.out.println("4. 프로그램 종료");
+		System.out.println("==============================================================\n");
+		System.out.println("  ___                       _            ______  _____  _____ ");
+	    System.out.println(" / _ \\                     | |           | ___ \\|  _  ||_   _|");
+	    System.out.println("/ /_\\ \\ _ __    __ _   ___ | |__    ___  | |_/ /| | | |  | |  ");
+	    System.out.println("|  _  || '_ \\  / _` | / __|| '_ \\  / _ \\ |  __/ | | | |  | |  ");
+	    System.out.println("| | | || |_) || (_| || (__ | | | ||  __/ | |    \\ \\_/ / _| |_ ");
+	    System.out.println("\\_| |_/| .__/  \\__,_| \\___||_| |_| \\___| \\_|     \\___/  \\___/ ");
+	    System.out.println("       | |                                                    ");
+	    System.out.println("       |_|                                                    \n");
+	    System.out.println("             1. 회원가입  2. 회원정보 조회  3. 프로그램 종료\n");
+	    System.out.println("==============================================================");
 		System.out.print("메뉴를 선택하세요 >> ");
 		return Integer.parseInt(scanner.nextLine());
 	}
 
 	private void register() {
-		System.out.println("----회 원 가 입-----");
-		System.out.println("고객 정보를 입력하세요");
-
-		System.out.print("아이디: ");
+		System.out.println("\n--------------------------------------------------------------\n");
+		System.out.println("                         [ 회 원 가 입 ]\n");
+		System.out.println("                       고객 정보를 입력하세요\n");
+		
+		System.out.print("                아이디: ");
 		String id = scanner.nextLine();
 
-		System.out.print("비밀번호");
+		System.out.print("                비밀번호: ");
 		String password = scanner.nextLine();
 
-		System.out.print("이름: ");
+		System.out.print("                이름: ");
 		String name = scanner.nextLine();
 
-		System.out.print("이메일: ");
+		System.out.print("                이메일: ");
 		String email = scanner.nextLine();
 
-		System.out.print("전화번호: ");
+		System.out.print("                전화번호: ");
 		String telno = scanner.nextLine();
-
+		
 		customerMap.put(id, new CustomerVo(id, password, name, email, telno));
-
 		createExcelFile();
+		
+		System.out.println("\n                     * 회원가입이 완료되었습니다 *");
+		System.out.println("\n--------------------------------------------------------------\n");
+
 	}
 
 	private void createExcelFile() {
@@ -86,11 +93,6 @@ public class MainApplication {
 
 		// xlsx 파일 쓰기(2007)
 		excelWriter.createExcelFileAfter2007(customerMap);
-	}
-
-	private void update() {
-		// TODO Auto-generated method stub
-
 	}
 
 	private void show() {

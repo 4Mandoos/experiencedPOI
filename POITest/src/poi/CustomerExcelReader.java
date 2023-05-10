@@ -12,6 +12,8 @@ import java.util.Iterator;
 
 public class CustomerExcelReader {
 	public void reader() {
+		
+		System.out.println("\n--------------------------------------------------------------\n");
 
 		try {
 			// FileInputStream을 사용하여 파일을 읽어온다. filePath와 fileNm 변수를 사용하여 파일의 경로와 이름을 지정.
@@ -41,9 +43,6 @@ public class CustomerExcelReader {
 					Cell cell = cellIterator.next();
 
 					switch (cell.getCellType()) { // cell.getCellType() => 셀의 타입을 확인
-					case NUMERIC: // 숫자 셀인 경우 cell.getNumericCellValue()를 사용하여 값을 가져온다.
-						System.out.print((int) cell.getNumericCellValue() + "\t"); // double형 반환
-						break;
 					case STRING: // 문자 셀인 경우 cell.getStringCellValue()를 사용하여 값을 가져온다.
 						System.out.print(cell.getStringCellValue() + "\t");
 						break;
@@ -52,6 +51,7 @@ public class CustomerExcelReader {
 				System.out.println();
 			}
 			file.close();
+			System.out.println("\n--------------------------------------------------------------\n");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
