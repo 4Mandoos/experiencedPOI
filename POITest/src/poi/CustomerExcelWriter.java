@@ -108,10 +108,10 @@ public class CustomerExcelWriter {
 		cell.setCellValue("아이디");
 
 		cell = row.createCell(1);
-		cell.setCellValue("이름");
+		cell.setCellValue("비밀번호");
 
 		cell = row.createCell(2);
-		cell.setCellValue("비밀번호");
+		cell.setCellValue("이름");
 
 		cell = row.createCell(3);
 		cell.setCellValue("이메일");
