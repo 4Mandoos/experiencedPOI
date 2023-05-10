@@ -14,7 +14,7 @@ public class MainApplication {
 	public MainApplication() {
 		customerMap = new HashMap<>();
 		scanner = new Scanner(System.in);
-	}
+	} 
 
 	public static void main(String[] args) {
 		new MainApplication().startRegister();
@@ -30,10 +30,7 @@ public class MainApplication {
 			case 2: // 정보 조회
 				show();
 				break;
-			case 3: // 정보 수정
-				update();
-				break;
-			case 4: // 종료
+			case 3: // 종료
 				return;
 
 			default:
@@ -86,11 +83,6 @@ public class MainApplication {
 
 		// xlsx 파일 쓰기(2007)
 		excelWriter.createExcelFileAfter2007(customerMap);
-	}
-
-	private void update() {
-		// TODO Auto-generated method stub
-
 	}
 
 	private void show() {
