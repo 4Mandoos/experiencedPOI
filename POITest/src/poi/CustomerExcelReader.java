@@ -11,16 +11,11 @@ import java.io.IOException;
 import java.util.Iterator;
 
 public class CustomerExcelReader {
-	
-    // Excel 파일의 경로와 파일 이름을 저장하는 변수 정의
-	public static String filePath = "C:\\poi_temp";
-	public static String fileNm = "testWrite.xlsx";
-
 	public void reader() {
 
 		try {
 			// FileInputStream을 사용하여 파일을 읽어온다. filePath와 fileNm 변수를 사용하여 파일의 경로와 이름을 지정.
-			FileInputStream file = new FileInputStream(new File(filePath, fileNm));
+			FileInputStream file = new FileInputStream(MainApplication.FILE_AFTER_2007);
 
 			// XSSFWorkbook을 사용하여 엑셀 파일의 내용을 읽어온다. file로부터 XSSFWorkbook 인스턴스를 생성.
 			XSSFWorkbook workbook = new XSSFWorkbook(file);
@@ -47,7 +42,7 @@ public class CustomerExcelReader {
 
 					switch (cell.getCellType()) { // cell.getCellType() => 셀의 타입을 확인
 					case NUMERIC: // 숫자 셀인 경우 cell.getNumericCellValue()를 사용하여 값을 가져온다.
-						System.out.print((int) cell.getNumericCellValue() + "\t"); 												// double형 반환
+						System.out.print((int) cell.getNumericCellValue() + "\t"); // double형 반환
 						break;
 					case STRING: // 문자 셀인 경우 cell.getStringCellValue()를 사용하여 값을 가져온다.
 						System.out.print(cell.getStringCellValue() + "\t");

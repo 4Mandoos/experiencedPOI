@@ -1,79 +1,100 @@
 package poi;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class MainApplication {
 	public static final String FILE_BEFORE_2003 = "./src/CustomerInfo.xls";
 	public static final String FILE_AFTER_2007 = "./src/CustomerInfo.xlsx";
 
+	Map<String, CustomerVo> customerMap;
+	Scanner scanner;
+
+	public MainApplication() {
+		customerMap = new HashMap<>();
+		scanner = new Scanner(System.in);
+	}
+
 	public static void main(String[] args) {
-		// 엑셀로 쓸 데이터 생성
+		new MainApplication().startRegister();
+	}
 
-		List<CustomerVo> list = new ArrayList<CustomerVo>();
-		/*
-		 * list.add(new CustomerVo("asdf1", "사용자1", "30", "asdf1@naver.com"));
-		 * list.add(new CustomerVo("asdf2", "사용자2", "31", "asdf2@naver.com"));
-		 * list.add(new CustomerVo("asdf3", "사용자3", "32", "asdf3@naver.com"));
-		 * list.add(new CustomerVo("asdf4", "사용자4", "33", "asdf4@naver.com"));
-		 * list.add(new CustomerVo("asdf5", "사용자5", "34", "asdf5@naver.com"));
-		 */
+	private void startRegister() {
+		while (true) {
+			int choice = selectMenu();
+			switch (choice) {
+			case 1: // 회원가입
+				register();
+				break;
+			case 2: // 정보 조회
+				show();
+				break;
+			case 3: // 정보 수정
+				update();
+				break;
+			case 4: // 종료
+				return;
 
-		Scanner scanner = new Scanner(System.in);
+			default:
+				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+				break;
+			}
+		}
+	}
 
-		System.out.println("번호를 입력하세요.");
+	private int selectMenu() {
+		System.out.println("——————————————");
 		System.out.println("1. 회원가입");
 		System.out.println("2. 회원정보 조회");
 		System.out.println("3. 회원정보 수정");
+		System.out.println("4. 프로그램 종료");
+		System.out.print("메뉴를 선택하세요 >> ");
+		return Integer.parseInt(scanner.nextLine());
+	}
 
-		int num = Integer.parseInt(scanner.nextLine());
+	private void register() {
+		System.out.println("----회 원 가 입-----");
+		System.out.println("고객 정보를 입력하세요");
 
-		switch (num) {
-		case 1:
-			for (int i = 0; i < 2; i++) {
-				System.out.println("----회 원 가 입-----");
-				System.out.println("고객 정보를 입력하세요");
+		System.out.print("아이디: ");
+		String id = scanner.nextLine();
 
-				System.out.print("아이디: ");
-				String id = scanner.nextLine();
+		System.out.print("비밀번호");
+		String password = scanner.nextLine();
 
-				System.out.print("이름: ");
-				String name = scanner.nextLine();
+		System.out.print("이름: ");
+		String name = scanner.nextLine();
 
-				System.out.print("나이: ");
-				String age = scanner.nextLine();
+		System.out.print("이메일: ");
+		String email = scanner.nextLine();
 
-				System.out.print("이메일: ");
-				String email = scanner.nextLine();
+		System.out.print("전화번호: ");
+		String telno = scanner.nextLine();
 
-				System.out.print("전화번호: ");
-				String telno = scanner.nextLine();
+		customerMap.put(id, new CustomerVo(id, password, name, email, telno));
 
-				list.add(new CustomerVo(id, name, age, email, telno));
-			}
-			
-			// CustomerExcelWriter클래스 인스턴스 생성 => excelWriter에 할당
-			CustomerExcelWriter excelWriter = new CustomerExcelWriter();
+		createExcelFile();
+	}
 
-			// xls 파일 쓰기(2003)
-			excelWriter.createExcelFileBefore2003(list);
+	private void createExcelFile() {
+		// CustomerExcelWriter클래스 인스턴스 생성 => excelWriter에 할당
+		CustomerExcelWriter excelWriter = new CustomerExcelWriter();
 
-			// xlsx 파일 쓰기(2007)
-			excelWriter.createExcelFileAfter2007(list);
-			break;
+		// xls 파일 쓰기(2003)
+		excelWriter.createExcelFileBefore2003(customerMap);
 
-		case 2:
-			// CustomerExcelReader클래스 인스턴스 생성 => excelReader에 할당
-			// excelReader 인스턴스의 reader() 메서드 호출
-			CustomerExcelReader excelReader = new CustomerExcelReader();
-			excelReader.reader();
-			break;
-			
-		default:
-			break;
-		}
+		// xlsx 파일 쓰기(2007)
+		excelWriter.createExcelFileAfter2007(customerMap);
+	}
 
+	private void update() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private void show() {
+		CustomerExcelReader excelReader = new CustomerExcelReader();
+		excelReader.reader();
 	}
 }
