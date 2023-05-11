@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MainApplication {
-	public static final String FILE_BEFORE_2003 = "./src/CustomerInfo.xls";
-	public static final String FILE_AFTER_2007 = "./src/CustomerInfo.xlsx";
+	public static final String FILE_BEFORE_2003 = "./CustomerInfo.xls";
+	public static final String FILE_AFTER_2007 = "./CustomerInfo.xlsx";
 
 	private List<CustomerVo> list;
 	private Scanner scanner;

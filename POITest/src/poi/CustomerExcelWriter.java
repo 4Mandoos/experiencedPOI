@@ -92,79 +92,79 @@ public class CustomerExcelWriter {
 		}
 	}
 
-	// .xlsx는 Excel2007 이후 형식으로 문서를 만든 경우 생성되는 확장자
-	public void createExcelFileAfter2007(List<CustomerVo> list) {
-		// 워크북 생성
-		XSSFWorkbook workbook = new XSSFWorkbook();
-		// 워크시트 생성
-		XSSFSheet sheet = workbook.createSheet();
-		// 행 생성
-		XSSFRow row = sheet.createRow(0);
-		// 쎌 생성
-		XSSFCell cell;
+// .xlsx는 Excel2007 이후 형식으로 문서를 만든 경우 생성되는 확장자
+public void createExcelFileAfter2007(List<CustomerVo> list) {
+	// 워크북 생성
+	XSSFWorkbook workbook = new XSSFWorkbook();
+	// 워크시트 생성
+	XSSFSheet sheet = workbook.createSheet();
+	// 행 생성
+	XSSFRow row = sheet.createRow(0);
+	// 쎌 생성
+	XSSFCell cell;
 
-		// 헤더 정보 구성
+	// 헤더 정보 구성
+	cell = row.createCell(0);
+	cell.setCellValue("아이디");
+
+	cell = row.createCell(1);
+	cell.setCellValue("비밀번호");
+
+	cell = row.createCell(2);
+	cell.setCellValue("이름");
+
+	cell = row.createCell(3);
+	cell.setCellValue("이메일");
+
+	cell = row.createCell(5);
+	cell.setCellValue("전화번호");
+
+	// 리스트의 size 만큼 row를 생성
+	CustomerVo vo;
+	for (int rowIdx = 0; rowIdx < list.size(); rowIdx++) {
+		vo = list.get(rowIdx);
+
+		// 행 생성
+		row = sheet.createRow(rowIdx + 1);
+
 		cell = row.createCell(0);
-		cell.setCellValue("아이디");
+		cell.setCellValue(vo.getCustId());
 
 		cell = row.createCell(1);
-		cell.setCellValue("비밀번호");
+		cell.setCellValue(vo.getCustPassword());
 
 		cell = row.createCell(2);
-		cell.setCellValue("이름");
+		cell.setCellValue(vo.getCustName());
 
 		cell = row.createCell(3);
-		cell.setCellValue("이메일");
+		cell.setCellValue(vo.getCustEmail());
 
 		cell = row.createCell(5);
-		cell.setCellValue("전화번호");
+		cell.setCellValue(vo.getCustTelno());
 
-		// 리스트의 size 만큼 row를 생성
-		CustomerVo vo;
-		for (int rowIdx = 0; rowIdx < list.size(); rowIdx++) {
-			vo = list.get(rowIdx);
+	}
 
-			// 행 생성
-			row = sheet.createRow(rowIdx + 1);
+	// 입력된 내용 파일로 쓰기
+	File file = new File(MainApplication.FILE_AFTER_2007);
+	FileOutputStream fos = null;
 
-			cell = row.createCell(0);
-			cell.setCellValue(vo.getCustId());
-
-			cell = row.createCell(1);
-			cell.setCellValue(vo.getCustPassword());
-
-			cell = row.createCell(2);
-			cell.setCellValue(vo.getCustName());
-
-			cell = row.createCell(3);
-			cell.setCellValue(vo.getCustEmail());
-
-			cell = row.createCell(5);
-			cell.setCellValue(vo.getCustTelno());
-
-		}
-
-		// 입력된 내용 파일로 쓰기
-		File file = new File(MainApplication.FILE_AFTER_2007);
-		FileOutputStream fos = null;
-
+	try {
+		fos = new FileOutputStream(MainApplication.FILE_AFTER_2007);
+		workbook.write(fos);
+	} catch (FileNotFoundException e) {
+		e.printStackTrace();
+	} catch (IOException e) {
+		e.printStackTrace();
+	} finally {
 		try {
-			fos = new FileOutputStream(MainApplication.FILE_AFTER_2007);
-			workbook.write(fos);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			if (workbook != null)
+				workbook.close();
+			if (fos != null)
+				fos.close();
+
 		} catch (IOException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				if (workbook != null)
-					workbook.close();
-				if (fos != null)
-					fos.close();
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 		}
 	}
+}
 }
