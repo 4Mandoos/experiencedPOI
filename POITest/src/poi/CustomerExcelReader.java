@@ -37,12 +37,8 @@ public class CustomerExcelReader {
 					Cell cell = cellIterator.next();
 
 					// cell.getCellType() => 셀의 타입을 확인
-					switch (cell.getCellType()) {
 					// 문자 셀인 경우 cell.getStringCellValue()를 사용하여 값을 가져온다.
-					case STRING:
-						System.out.print(cell.getStringCellValue() + "\t");
-						break;
-					}
+					System.out.print(cell.getStringCellValue() + "\t");
 				}
 				System.out.println();
 			}

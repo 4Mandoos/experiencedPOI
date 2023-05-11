@@ -104,10 +104,14 @@ public void createExcelFileAfter2007(List<CustomerVo> list) {
 	XSSFCell cell;
 
 	// 헤더 정보 구성
+	// 1번째(index=0) 열에 셀을 생성, 현재 행은 0
 	cell = row.createCell(0);
+	// 생성된 셀에 "아이디"라는 값을 설정한다.
 	cell.setCellValue("아이디");
 
+	// 2번째(index=1) 열에 셀을 생성, 현재 행은 0
 	cell = row.createCell(1);
+	// 생성된 셀에 "이름"라는 값을 설정한다.
 	cell.setCellValue("비밀번호");
 
 	cell = row.createCell(2);
@@ -121,15 +125,20 @@ public void createExcelFileAfter2007(List<CustomerVo> list) {
 
 	// 리스트의 size 만큼 row를 생성
 	CustomerVo vo;
+	// 리스트의 size만큼 반복문 실행
 	for (int rowIdx = 0; rowIdx < list.size(); rowIdx++) {
+		// list.get(rowIdx) => 인덱스에 해당하는 고객 정보(CustomerVo)를 가져온다.
 		vo = list.get(rowIdx);
 
 		// 행 생성
+		// 현재 작업중인 sheet에 행 생성, 0번째 행은 헤더이므로 +1
 		row = sheet.createRow(rowIdx + 1);
 
+		// 1번째 열 (index = 0)에 vo.getCustId()로부터 얻은 고객 아이디 값을 작성한다.
 		cell = row.createCell(0);
 		cell.setCellValue(vo.getCustId());
 
+		// 2번째 열 (index = 1)에 vo.getCustId()로부터 얻은 고객 아이디 값을 작성한다.
 		cell = row.createCell(1);
 		cell.setCellValue(vo.getCustPassword());
 
@@ -145,15 +154,19 @@ public void createExcelFileAfter2007(List<CustomerVo> list) {
 	}
 
 	// 입력된 내용 파일로 쓰기
+	// 해당 경로에 파일 생성
 	File file = new File(MainApplication.FILE_AFTER_2007);
+	// 객체 선언 및 초기화
 	FileOutputStream fos = null;
 
 	try {
+		// 객체 생성, 출력 스트림 연결
 		fos = new FileOutputStream(MainApplication.FILE_AFTER_2007);
+		// 워크북의 내용을 파일에 작성한다.
 		workbook.write(fos);
-	} catch (FileNotFoundException e) {
+	} catch (FileNotFoundException e) { // 파일 관련 예외
 		e.printStackTrace();
-	} catch (IOException e) {
+	} catch (IOException e) { // 파일 관련 예외
 		e.printStackTrace();
 	} finally {
 		try {
@@ -161,7 +174,6 @@ public void createExcelFileAfter2007(List<CustomerVo> list) {
 				workbook.close();
 			if (fos != null)
 				fos.close();
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
